@@ -1,0 +1,47 @@
+Main Archrecture
+##########################################################################
+# ------> main.py (rules threads and initializations) ------->           #
+# |                                                          |           #
+# |                            VK                            |           #
+# |                             |                            |           #
+# |                           (json)                         |           #
+# |                             |                            |           #
+# |                             v                            |           #
+# |<--------thread--------- server.py <-------thread---------|           #
+# |                             |                            |           #
+# |                             |                            |           #
+# |                             v                            |           #
+# |<------public access------ JSON  <------initialize--------|           #
+# |                             |                            |           #
+# |                             |                            |           #
+# |                             v                            |           #
+# |                     json processing                      |           #
+# |<------thread------- main file of it <-------thread-------|           #
+# |                             |                            |           #
+# |                             v                            |           #
+# |<------public access------ URLS  <------initialize--------|           #
+# |              |-----------------                          |           #
+# |              |--------------- |                          |           #
+# |              -------------- | |                          |           #
+# |                           | | |                          |           #
+# |                           v v v                          |           #
+# |<----------thread--------- Answer <---------thread--------|           #
+#                             | | | |                                    #
+#               VK <----thread-------                                    #
+#                                                                        #
+##########################################################################
+
+Json Processing Architecture
+Folder System:
+  <group_id>-
+            |- <type_of_event_1> -
+            |                    |- logic.py (no template: special for everything; returns Answer class instance)
+            |                    |- ... (custom files and folders)
+            |- ...
+
+Example:
+    123456-
+          |- message_new -
+          |              |- logic.py (if message == "Hi": answer.params["message"] = "Hello!")
+          |- group_join --
+                         |- logic.py (answer.method = "messages.send"; answer.params["message"] = "Welcome!")
