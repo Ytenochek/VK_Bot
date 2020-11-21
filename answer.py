@@ -1,5 +1,4 @@
 import threading
-
 import requests
 
 from keeper import URLS

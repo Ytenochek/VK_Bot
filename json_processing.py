@@ -1,4 +1,3 @@
-import asyncio
 from importlib import import_module
 
 from keeper import JSON, URLS
